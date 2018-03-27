@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "afab3ece6f8f10b422c29ae018b87b20",
+    "content-hash": "366058d3e21cedf13da363139ef148f0",
     "packages": [
         {
             "name": "alphayax/freebox_api_php",
@@ -100,6 +100,43 @@
             ],
             "description": "Tiny class to provide simple REST",
             "time": "2017-02-15T21:38:34+00:00"
+        },
+        {
+            "name": "api-allocine/api-allocine-helper",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/etienne-gauvin/api-allocine-helper.git",
+                "reference": "fef1b92d6deca402e15864af57c7bb620c5c4dc6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/etienne-gauvin/api-allocine-helper/zipball/fef1b92d6deca402e15864af57c7bb620c5c4dc6",
+                "reference": "fef1b92d6deca402e15864af57c7bb620c5c4dc6",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "api-allocine-helper.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "CC-BY-SA"
+            ],
+            "authors": [
+                {
+                    "name": "Etienne Gauvin",
+                    "email": "etienne@gauvin.info"
+                }
+            ],
+            "description": "An easy way to use the Allocine API",
+            "homepage": "https://github.com/etienne-gauvin/api-allocine-helper",
+            "time": "2016-10-19 15:30:04"
         },
         {
             "name": "monolog/monolog",
@@ -230,7 +267,9 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "api-allocine/api-allocine-helper": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
