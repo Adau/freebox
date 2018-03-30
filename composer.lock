@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "d8ce05da70e71dea08571e857ce33493",
+    "content-hash": "bb3177296dfcb8d4ef2050b1d9ae6499",
     "packages": [
         {
             "name": "alphayax/freebox_api_php",
-            "version": "1.2.5",
+            "version": "1.2.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/alphayax/freebox_api_php.git",
-                "reference": "d58f498739fc5626a86eced5c2ace3f52ea07696"
+                "reference": "ca3cae0fcfc7b1e682a5c8a99c0d4a2859c456a9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/alphayax/freebox_api_php/zipball/d58f498739fc5626a86eced5c2ace3f52ea07696",
-                "reference": "d58f498739fc5626a86eced5c2ace3f52ea07696",
+                "url": "https://api.github.com/repos/alphayax/freebox_api_php/zipball/ca3cae0fcfc7b1e682a5c8a99c0d4a2859c456a9",
+                "reference": "ca3cae0fcfc7b1e682a5c8a99c0d4a2859c456a9",
                 "shasum": ""
             },
             "require": {
@@ -57,7 +57,7 @@
                 "freebox",
                 "rest"
             ],
-            "time": "2018-03-29T06:57:29+00:00"
+            "time": "2018-03-29T19:59:35+00:00"
         },
         {
             "name": "alphayax/rest",
