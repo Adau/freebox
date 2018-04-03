@@ -39,7 +39,14 @@ foreach ($downloadService->getAll() as $task) {
                         if (strtolower($movie['originalTitle']) == strtolower($movieTitle) &&
                             $movie['productionYear'] == (int)$movieYear
                         ) {
-                            // ToDo
+                            $fileExtension = pathinfo($fileInformation->getName(), PATHINFO_EXTENSION);
+
+                            $fileSystemOperationService->rename(
+                                $fileInformation->getPath(),
+                                sprintf('%s.%s', $movie['title'], $fileExtension)
+                            );
+
+                            $downloadService->deleteFromId($task->getId());
                         }
                     }
                 }
