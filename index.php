@@ -30,14 +30,14 @@ foreach ($downloadService->getAll() as $task) {
             if ($fileInformation->getType() == 'file' && strpos($fileInformation->getMimetype(), 'video') === 0) {
                 preg_match('/(.*?)\.*(\d{4})\.*(.*)/', $fileInformation->getName(), $matches);
 
-                $movieTitle = str_replace('.', ' ', $matches[1]);
+                $movieTitle = preg_replace('/\W+/', ' ', $matches[1]);
                 $movieYear = $matches[2];
 
                 $results = $allocine->search($movieTitle, 1, 10, false, array('movie'))->getArray();
                 if ($results['totalResults']) {
                     foreach ($results['movie'] as $movie) {
-                        if (strtolower($movie['originalTitle']) == strtolower($movieTitle) &&
-                            $movie['productionYear'] == (int)$movieYear
+                        if (strtolower(preg_replace('/\W+/', ' ', $movie['originalTitle'])) == strtolower($movieTitle)
+                            && date('Y', strtotime($movie['release']['releaseDate'])) == (int)$movieYear
                         ) {
                             $fileExtension = pathinfo($fileInformation->getName(), PATHINFO_EXTENSION);
 
