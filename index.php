@@ -3,6 +3,10 @@
 require_once __DIR__ . '/vendor/autoload.php';
 $config = parse_ini_file('config.ini');
 
+if (isset($_GET['user'])) {
+    $config = $config[$_GET['user']];
+}
+
 // Accès local :
 // $application = new \alphayax\freebox\utils\Application('com.alphayax.freebox', 'Freebox PHP API', '0.0.1');
 // $application->authorize();
@@ -47,6 +51,22 @@ foreach ($downloadService->getAll() as $task) {
                             );
 
                             $downloadService->deleteFromId($task->getId());
+
+                            $freeMobileClient = new \Th3Mouk\FreeMobileSMSNotif\Client(
+                                $config['freemobile_id'],
+                                $config['freemobile_secret_key']
+                            );
+
+                            $message = sprintf(
+                                "Nouveau film sur la Freebox :\n" .
+                                "%s\n\n" .
+                                "Infos et bande annonce :\n" .
+                                "%s",
+                                $movie['title'],
+                                $movie['link'][0]['href']
+                            );
+
+                            $freeMobileClient->send($message);
                         }
                     }
                 }

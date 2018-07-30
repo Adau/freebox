@@ -1,2 +1,4 @@
-freebox_api_host=""
-freebox_app_token=""
+freebox_api_host = ""
+freebox_app_token = ""
+freemobile_id = ""
+freemobile_secret_key = ""
