@@ -1,4 +1,5 @@
-freebox_api_host = ""
-freebox_app_token = ""
-freemobile_id = ""
-freemobile_secret_key = ""
+[Username]
+username[freebox_api_host] = ""
+username[freebox_app_token] = ""
+username[freemobile_id] = ""
+username[freemobile_secret_key] = ""
