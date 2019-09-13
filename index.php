@@ -3,8 +3,8 @@
 require_once __DIR__ . '/vendor/autoload.php';
 $config = parse_ini_file('config.ini');
 
-parse_str($argv[1], $params);
-$config = $config[$params['user']];
+$options = getopt('', ['user:']);
+$config = $config[$options['user']];
 
 // Accès local :
 // $application = new \alphayax\freebox\utils\Application('com.alphayax.freebox', 'Freebox PHP API', '0.0.1');
