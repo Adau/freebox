@@ -3,8 +3,10 @@
 require_once __DIR__ . '/vendor/autoload.php';
 
 $options = getopt('', ['user:']);
-$user = array_key_exists('user', $options) ? $options['user'] : false;
-$filename = $user ? '.env.' . $user : '.env';
+$filename = sprintf(
+    '.env%s',
+    array_key_exists('user', $options) ? '.' . $options['user'] : ''
+);
 
 $dotenv = Dotenv\Dotenv::create(__DIR__, $filename);
 $dotenv->load();
