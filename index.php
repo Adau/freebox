@@ -3,16 +3,16 @@
 require_once __DIR__ . '/vendor/autoload.php';
 $config = parse_ini_file('config.ini');
 
-if (isset($_GET['user'])) {
-    $config = $config[$_GET['user']];
-}
+parse_str($argv[1], $params);
+$config = $config[$params['user']];
 
 // Accès local :
 // $application = new \alphayax\freebox\utils\Application('com.alphayax.freebox', 'Freebox PHP API', '0.0.1');
 // $application->authorize();
 // $application->openSession();
 
-$application = new \alphayax\freebox\utils\Application('com.alphayax.freebox', 'Freebox PHP API', '0.0.1');
+// $application = new \alphayax\freebox\utils\Application('com.alphayax.freebox', 'Freebox PHP API', '0.0.1');
+$application = new \alphayax\freebox\utils\Application('freeboxctrl', 'FreeboxCtrl', '1.0');
 $application->setFreeboxApiHost($config['freebox_api_host']);
 $application->setAppToken($config['freebox_app_token']);
 $application->openSession();
@@ -28,7 +28,7 @@ foreach ($downloadService->getAll() as $task) {
         $downloadDir = base64_decode($task->getDownloadDir());
 
         try {
-            $fileName = $downloadDir . $task->getName();
+            $fileName = $downloadDir . '/' . $task->getName();
             $fileInformation = $fileSystemListingService->getFileInformation($fileName);
 
             if ($fileInformation->getType() == 'file' && strpos($fileInformation->getMimetype(), 'video') === 0) {
@@ -38,6 +38,7 @@ foreach ($downloadService->getAll() as $task) {
                 $movieYear = $matches[2];
 
                 $results = $allocine->search($movieTitle, 1, 10, false, array('movie'))->getArray();
+
                 if ($results['totalResults']) {
                     foreach ($results['movie'] as $movie) {
                         if (strtolower(preg_replace('/\W+/', ' ', $movie['originalTitle'])) == strtolower($movieTitle)
@@ -67,6 +68,8 @@ foreach ($downloadService->getAll() as $task) {
                             );
 
                             $freeMobileClient->send($message);
+
+                            break;
                         }
                     }
                 }

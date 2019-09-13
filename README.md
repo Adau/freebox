@@ -12,4 +12,8 @@
     cp config.ini.default config.ini
     ```
 
-3. Se rendre sur la page d'index
+3. Lancer le script
+
+    ```sh
+    php index.php user=username
+    ```
