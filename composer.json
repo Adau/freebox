@@ -2,6 +2,7 @@
     "require": {
         "alphayax/freebox_api_php": "^1.2.6",
         "api-allocine/api-allocine-helper": "master-dev",
-        "th3mouk/free-mobile-sms-cli": "^1.1"
+        "th3mouk/free-mobile-sms-cli": "^1.1",
+        "vlucas/phpdotenv": "^3.6"
     }
 }

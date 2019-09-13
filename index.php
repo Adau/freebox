@@ -1,10 +1,13 @@
 <?php
 
 require_once __DIR__ . '/vendor/autoload.php';
-$config = parse_ini_file('config.ini');
 
 $options = getopt('', ['user:']);
-$config = $config[$options['user']];
+$user = array_key_exists('user', $options) ? $options['user'] : false;
+$filename = $user ? '.env.' . $user : '.env';
+
+$dotenv = Dotenv\Dotenv::create(__DIR__, $filename);
+$dotenv->load();
 
 // Accès local :
 // $application = new \alphayax\freebox\utils\Application('com.alphayax.freebox', 'Freebox PHP API', '0.0.1');
@@ -13,8 +16,8 @@ $config = $config[$options['user']];
 
 // $application = new \alphayax\freebox\utils\Application('com.alphayax.freebox', 'Freebox PHP API', '0.0.1');
 $application = new \alphayax\freebox\utils\Application('freeboxctrl', 'FreeboxCtrl', '1.0');
-$application->setFreeboxApiHost($config['freebox_api_host']);
-$application->setAppToken($config['freebox_app_token']);
+$application->setFreeboxApiHost(getenv('FREEBOX_API_HOST'));
+$application->setAppToken(getenv('FREEBOX_APP_TOKEN'));
 $application->openSession();
 
 $downloadService = new \alphayax\freebox\api\v3\services\download\Download($application);
@@ -54,8 +57,8 @@ foreach ($downloadService->getAll() as $task) {
                             $downloadService->deleteFromId($task->getId());
 
                             $freeMobileClient = new \Th3Mouk\FreeMobileSMSNotif\Client(
-                                $config['freemobile_id'],
-                                $config['freemobile_secret_key']
+                                getenv('FREEMOBILE_ID'),
+                                getenv('FREEMOBILE_SECRET_KEY')
                             );
 
                             $message = sprintf(
